@@ -4,6 +4,7 @@ $(document).ready(function () {
     function createButton() {
         var userInput = $(".searchBar").val().trim();
         var newButton = $('<button>').append(userInput);
+        newButton.css('margin-right', '3px');
         newButton.attr('id', userInput);
         newButton.addClass("buttonClick")
         $('.buttonBox').append(newButton);
