@@ -13,7 +13,7 @@ $(document).ready(function () {
         var searchTerm = $(this).attr('id');
         // grab data
         $('.responsesBox').empty();
-        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=8YFcTyyCHtCNjQVi55eFHpokpZSNe5eX&limit=10";
+        queryURL = "http://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=8YFcTyyCHtCNjQVi55eFHpokpZSNe5eX&limit=10";
 
         $.ajax({ url: queryURL, method: "GET" })
             .then(function (response) {
@@ -55,8 +55,8 @@ $(document).ready(function () {
         else if (state === 'animate') {
             $(this).attr('src', $(this).attr('data-still'));
             $(this).attr('data-state', 'still');
-        }
-    }
+        };
+    };
     // onclick to create a button
     $(".CreateButton").on("click", createButton);
     // onclicks on the page, all items that have the class '.buttonClick', run the function GIFGetter();
