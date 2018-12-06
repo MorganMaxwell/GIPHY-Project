@@ -27,30 +27,36 @@ $(document).ready(function () {
                     var rating = $("<p>");
                     // filling in variables with data to use for toggling onclick
                     static = true;
-                    staticGifSRC = result.images.fixed_height.url;
-                    animateGifSRC = result.images.fixed_height_still.url;
+                    staticGIF = result.images.fixed_height_still.url;
+                    animateGIF = result.images.fixed_height.url;
                     // put rating in rating variable
                     rating.text("GIF rating: " + (result.rating).toUpperCase());
                     // make source of img the still Gif
-                    createGif.attr("src", result.images.fixed_height_still.url);
+                    
+                    createGif.attr('data-state', 'still');
+                    createGif.attr('data-still', staticGIF);
+                    createGif.attr('data-animate', animateGIF);
+                    createGif.attr("src", createGif.attr('data-still'));
                     // adding a class to grab when toggling
                     createGif.addClass("gifToggle");
                     // printing to screen
                     $(".responsesBox").append(createGif);
                     $('.responsesBox').append(rating);
+                    console.log(createGif);
                 };
             });
     };
     function Toggler() {
-        if (static) {
-            $(this).attr('src', animateGifSRC);
-            static = false;
+        var state = $(this).attr('data-state');
+        if (state === 'still') {
+            $(this).attr('src', $(this).attr('data-animate'));
+            $(this).attr('data-state', 'animate');
         }
-        else if (!static) {
-            $(this).attr('src', staticGifSRC);
-            static = true;
-        };
-    };
+        else if (state === 'animate') {
+            $(this).attr('src', $(this).attr('data-still'));
+            $(this).attr('data-state', 'still');
+        }
+    }
     // onclick to create a button
     $(".CreateButton").on("click", createButton);
     // onclicks on the page, all items that have the class '.buttonClick', run the function GIFGetter();
