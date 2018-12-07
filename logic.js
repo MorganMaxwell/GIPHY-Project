@@ -14,7 +14,7 @@ $(document).ready(function () {
         var searchTerm = $(this).attr('id');
         // grab data
         $('.responsesBox').empty();
-        queryURL = "http://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=8YFcTyyCHtCNjQVi55eFHpokpZSNe5eX&limit=10";
+        queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=8YFcTyyCHtCNjQVi55eFHpokpZSNe5eX&limit=10";
 
         $.ajax({ url: queryURL, method: "GET" })
             .then(function (response) {
